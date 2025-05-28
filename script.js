@@ -351,7 +351,7 @@ function createArticleCard(article) {
         imageUrlToDisplay = article.imageUrl;
     }
     else {
-        imageUrlToDisplay = `${baseUrlForImages}/images/default-article.png`;
+        imageUrlToDisplay = `${baseUrlForImages}/api/images/default-article.png`;
     }
 
     card.innerHTML = `
@@ -484,7 +484,7 @@ async function loadFullArticle(articleId) {
             } else if (article.imageUrl) {
                 imageUrlToDisplay = article.imageUrl;
             } else {
-                imageUrlToDisplay = `${baseUrlForImages}/images/default-article.png`;
+                imageUrlToDisplay = `${baseUrlForImages}/api/images/default-article.png`;
             }
 
             elements.fullArticleTitle.textContent = article.title;
