@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мій Fandom-Сайт</title>
+    <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="#" id="logoLink" class="logo">Мій Wiki</a>
+        </div>
+        <div class="header-center">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Пошук по статтях...">
+                <button id="searchBtn">Пошук</button>
+            </div>
+        </div>
+        <div class="header-right">
+            <button id="addArticleBtn" class="header-btn" style="display: none;">Додати сторінку</button>
+            <div class="profile-container">
+                <button id="profileDropdownBtn" class="profile-dropdown-btn"> <img id="profileAvatarHeader" src="./images/default-avatar.png" alt="Аватар" class="avatar-thumbnail">
+                    <span class="profile-text">Профіль</span>
+                </button>
+                <div id="profileDropdownContent" class="dropdown-content">
+                    <p id="dropdownAuthPrompt" class="dropdown-prompt">
+                        <a href="#" id="dropdownLoginLink">Увійти</a> або <a href="#" id="dropdownRegisterLink">Зареєструватися</a>
+                    </p>
+                    <div id="dropdownProfileInfo" style="display: none;">
+                        <p>Привіт, <strong id="dropdownProfileEmail"></strong>!</p>
+                        <p>Роль: <span id="dropdownProfileRole"></span></p>
+                        <button id="goToProfileBtn" class="dropdown-action-btn">Мій профіль</button>
+                        <button id="dropdownLogoutBtn" class="dropdown-action-btn">Вийти</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <aside class="left-sidebar">
+            </aside>
+
+        <section class="content-area">
+            <div id="homeSection" class="content-section active">
+                <h2>Популярні статті</h2>
+                <div class="articles-slider">
+                    <button class="slider-arrow left" data-target="popularArticlesContainer">&lt;</button>
+                    <div id="popularArticlesContainer" class="articles-grid">
+                        </div>
+                    <button class="slider-arrow right" data-target="popularArticlesContainer">&gt;</button>
+                </div>
+
+                <h2>Останні статті</h2>
+                <div class="articles-slider">
+                    <button class="slider-arrow left" data-target="recentArticlesContainer">&lt;</button>
+                    <div id="recentArticlesContainer" class="articles-grid">
+                        </div>
+                    <button class="slider-arrow right" data-target="recentArticlesContainer">&gt;</button>
+                </div>
+            </div>
+
+            <section id="authSection" class="content-section" style="display: none;">
+                <h2>Вхід та Реєстрація</h2>
+                <div class="auth-forms">
+                    <div id="loginFormContainer">
+                        <h3>Вхід</h3>
+                        <form id="loginForm">
+                            <label for="loginEmail">Email:</label>
+                            <input type="email" id="loginEmail" required>
+                            <label for="loginPassword">Пароль:</label>
+                            <input type="password" id="loginPassword" required>
+                            <button type="submit">Увійти</button>
+                        </form>
+                        <p>Ще не маєте акаунту? <a href="#" id="showRegister">Зареєструватися</a></p>
+                    </div>
+
+                    <div id="registerFormContainer" style="display: none;">
+                        <h3>Реєстрація</h3>
+                        <form id="registerForm">
+                            <label for="registerEmail">Email:</label>
+                            <input type="email" id="registerEmail" required>
+                            <label for="registerPassword">Пароль:</label>
+                            <input type="password" id="registerPassword" required>
+                            <button type="submit">Зареєструватися</button>
+                        </form>
+                        <p>Вже маєте акаунт? <a href="#" id="showLogin">Увійти</a></p>
+                    </div>
+                </div>
+                <p id="authMessage" class="message"></p>
+            </section>
+
+            <section id="profileSection" class="content-section" style="display: none;">
+                <h2>Особистий кабінет</h2>
+                <div class="profile-display" id="profile-display">
+                    <div class="profile-avatar-wrapper">
+                    <img id="profile-avatar" src="./images/default-avatar.png" alt="Аватар користувача" class="profile-avatar-large">
+                    <button id="edit-profile-btn" class="btn">Редагувати профіль</button>
+                    </div>
+                    <table>
+                        <tr>
+                            <td><strong>Email:</strong></td>
+                            <td id="profile-email"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Роль:</strong></td>
+                            <td id="profile-role"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ім'я:</strong></td>
+                            <td id="profile-name-display"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Стать:</strong></td>
+                            <td id="profile-gender-display"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Дата народження:</strong></td>
+                            <td id="profile-dateOfBirth-display"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Зареєстрований:</strong></td>
+                            <td id="profile-createdAt"></td>
+                        </tr>
+                    </table>
+                </div>
+            
+                <form id="update-profile-form" class="hidden"> <h3>Редагування профілю</h3>
+                    <div class="form-group">
+                        <label for="update-email">Email:</label>
+                        <input type="email" id="update-email" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="update-name">Ім'я:</label>
+                        <input type="text" id="update-name" placeholder="Ваше ім'я">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-gender">Стать:</label>
+                        <select id="update-gender">
+                            <option value="male">Чоловіча</option>
+                            <option value="female">Жіноча</option>
+                            <option value="other">Інша</option>
+                            <option value="prefer not to say">Не вказувати</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="update-dateOfBirth">Дата народження:</label>
+                        <input type="date" id="update-dateOfBirth">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-avatar-url">URL Аватара:</label>
+                        <input type="file" id="profile-image-upload" accept="image/*">
+                        <input type="hidden" id="profile-image-url-hidden">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Зберегти зміни</button>
+                    <button type="button" id="cancel-update-btn" class="btn btn-secondary">Скасувати</button>
+                    <p id="profile-message" class="message"></p>
+                </form>
+            </section>
+
+            <section id="adminPanelSection" class="content-section" style="display: none;">
+                <h2>Адмін панель</h2>
+                <p>Вітаємо, адміністраторе! Тут ви можете керувати користувачами.</p>
+                <button id="loadUsersBtn">Завантажити користувачів</button>
+                <p id="adminMessage" class="message"></p>
+                <div id="usersList">
+                    </div>
+            </section>
+
+            <section id="addArticleSection" class="content-section" style="display: none;">
+                <h2>Додати нову статтю</h2>
+                <form id="addArticleForm">
+                    <label for="articleTitle">Назва статті:</label>
+                    <input type="text" id="articleTitle" required>
+
+                    <label for="articleShortDescription">Короткий опис:</label>
+                    <textarea id="articleShortDescription" rows="3" maxlength="200" required></textarea>
+
+                    <label for="articleFullContent">Повний зміст:</label>
+                    <textarea id="articleFullContent" rows="10" required></textarea>
+
+                    <label for="articleImageUrl">Завантажити зображення:</label>
+                    <input type="file" id="article-image-upload" accept="image/*">
+                    <input type="hidden" id="article-image-url-hidden">
+
+                    <button type="submit">Створити статтю</button>
+                </form>
+                <p id="addArticleMessage" class="message"></p>
+            </section>
+
+            <section id="fullArticleSection" class="content-section" style="display: none;">
+                <h2 id="fullArticleTitle"></h2>
+                <img id="fullArticleImage" src="" alt="Зображення статті" class="article-image">
+                <p class="article-meta">Автор: <span id="fullArticleAuthor"></span> | Перегляди: <span id="fullArticleViews"></span> | Дата: <span id="fullArticleDate"></span></p>
+                <div id="fullArticleContent"></div>
+                <div class="article-actions" style="display: none;">
+                    <button id="editArticleBtn" class="action-btn">Редагувати</button>
+                    <button id="deleteArticleBtn" class="action-btn delete-btn">Видалити</button>
+                </div>
+                <p id="fullArticleMessage" class="message"></p>
+            </section>
+
+             <section id="editArticleSection" class="content-section" style="display: none;">
+                <h2>Редагувати статтю</h2>
+                <form id="editArticleForm">
+                    <input type="hidden" id="editArticleId"> <label for="editArticleTitle">Назва статті:</label>
+                    <input type="text" id="editArticleTitle" required>
+
+                    <label for="editArticleShortDescription">Короткий опис:</label>
+                    <textarea id="editArticleShortDescription" rows="3" maxlength="200" required></textarea>
+
+                    <label for="editArticleFullContent">Повний зміст:</label>
+                    <textarea id="editArticleFullContent" rows="10" required></textarea>
+
+                    <label for="edit-article-image-upload">Завантажити нове зображення:</label>
+                    <input type="file" id="edit-article-image-upload" accept="image/*">
+                    <input type="hidden" id="edit-article-image-url-hidden">
+
+                    <button type="submit">Зберегти зміни</button>
+                    <button type="button" id="cancelEditBtn" class="action-btn">Скасувати</p>
+                </form>
+                <p id="editArticleMessage" class="message"></p>
+            </section>
+
+            <section id="searchResultsSection" class="content-section" style="display: none;">
+                <h2>Результати пошуку</h2>
+                <div id="searchResultsContainer" class="articles-grid">
+                    </div>
+                <p id="searchMessage" class="message"></p>
+            </section>
+
+        </section>
+
+        <aside class="right-sidebar">
+            </aside>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Мій Wiki. Всі права захищені.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
