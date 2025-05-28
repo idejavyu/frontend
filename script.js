@@ -400,8 +400,8 @@ async function loadPopularAndRecentArticles() {
 
     try {
         const [popularResponse, recentResponse] = await Promise.all([
-            fetch(`${API_BASE_URL}/articles/popular`),
-            fetch(`${API_BASE_URL}/articles/recent`)
+            fetch(`${API_BASE_URL}/api/articles/popular`),
+            fetch(`${API_BASE_URL}/api/articles/recent`)
         ]);
 
         const [popularData, recentData] = await Promise.all([
