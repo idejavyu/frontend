@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'https://wiki-backend-0ou3.onrender.com';
 const elements = {
     logoLink: document.getElementById('logoLink'),
     searchInput: document.getElementById('searchInput'),
