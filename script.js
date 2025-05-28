@@ -373,7 +373,7 @@ async function uploadImage(file) {
     formData.append('image', file);
 
     try {
-        const response = await fetch(`${API_BASE_URL}/upload-image`, {
+        const response = await fetch(`${API_BASE_URL}/api/upload-image`, {
             method: 'POST',
             body: formData
         });
@@ -462,7 +462,7 @@ async function loadFullArticle(articleId) {
     const user = getUserData();
 
     try {
-        const response = await fetch(`${API_BASE_URL}/articles/${articleId}`, {
+        const response = await fetch(`${API_BASE_URL}/api/articles/${articleId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -533,7 +533,7 @@ async function loadArticleForEdit(articleId) {
     }
 
     try {
-        const response = await fetch(`${API_BASE_URL}/articles/${articleId}`, {
+        const response = await fetch(`${API_BASE_URL}/api/articles/${articleId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -599,7 +599,7 @@ async function deleteArticle(articleId) {
     }
 
     try {
-        const response = await fetch(`${API_BASE_URL}/articles/${articleId}`, {
+        const response = await fetch(`${API_BASE_URL}/api/articles/${articleId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -668,7 +668,7 @@ async function updateProfileData(e) {
     
 
     try {
-        const response = await fetch(`${API_BASE_URL}/user/profile`, {
+        const response = await fetch(`${API_BASE_URL}/api/user/profile`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -741,7 +741,7 @@ async function loadProfileData() {
         const token = getAuthToken();
         if (token) {
             try {
-                const response = await fetch(`${API_BASE_URL}/user/profile`, {
+                const response = await fetch(`${API_BASE_URL}/api/user/profile`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -802,7 +802,7 @@ async function loadProfileData() {
 
 async function registerUser(email, password) {
     try {
-        const response = await fetch(`${API_BASE_URL}/auth/register`, {
+        const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -828,7 +828,7 @@ async function registerUser(email, password) {
 
 async function loginUser(email, password) {
     try {
-        const response = await fetch(`${API_BASE_URL}/auth/login`, {
+        const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -938,7 +938,7 @@ elements.editArticleForm.addEventListener('submit', async (e) => {
         }
     }
     try {
-        const response = await fetch(`${API_BASE_URL}/articles/${articleId}`, {
+        const response = await fetch(`${API_BASE_URL}/api/articles/${articleId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -1005,7 +1005,7 @@ elements.addArticleForm.addEventListener('submit', async (e) => {
 
 
     try {
-        const response = await fetch(`${API_BASE_URL}/articles`, {
+        const response = await fetch(`${API_BASE_URL}/api/articles`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
